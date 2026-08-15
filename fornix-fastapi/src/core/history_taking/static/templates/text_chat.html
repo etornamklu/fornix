@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomujo 🚀</title>
+    <style>
+        :root {
+            --primary-color: #6200ee;
+            --secondary-color: #03dac6;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            display: flex;
+            width: 65%;
+            max-width: 1200px;
+            height: 90vh;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #eee;
+            max-height: 100%;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 80%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 16px;
+            animation: fadeIn 0.3s ease-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background-color: var(--secondary-color);
+            color: black;
+            border-bottom-left-radius: 0;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            padding-bottom: 0; /* Adjusted padding-bottom */
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: border-color 0.3s ease, height 0.3s ease;
+            min-height: 20px;
+            max-height: 100px;
+            resize: none;
+            overflow-y: hidden;
+        }
+
+        #user-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        #send-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        #send-btn:hover {
+            background-color: #3700b3;
+        }
+
+        .data-container {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #fafafa;
+        }
+
+        .data-container h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        #collected-data {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .yaml-key {
+            color: #0070c1;
+            font-weight: bold;
+        }
+
+        .yaml-value {
+            color: #4a4a4a;
+        }
+
+        /* Emoji styles */
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .app-container {
+                flex-direction: column;
+                height: 100vh;
+                width: 100%;
+            }
+
+            .chat-container,
+            .data-container {
+                width: 100%;
+            }
+
+            .chat-container {
+                height: 70vh;
+            }
+
+            .data-container {
+                height: 30vh;
+            }
+
+            .chat-header {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .message {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            #user-input,
+            #send-btn {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            #send-btn {
+                padding: 8px 16px;
+            }
+
+            .data-container h3 {
+                font-size: 1em;
+            }
+
+            #collected-data {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .chat-container {
+                height: 65vh;
+            }
+
+            .data-container {
+                height: 35vh;
+            }
+
+            .message {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+
+            #user-input,
+            #send-btn {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            #send-btn {
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="chat-container">
+            <div class="chat-header"><span class="emoji">🚀</span> Zomujo Chat</div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <textarea id="user-input" placeholder="Type your message here..." rows="1"></textarea>
+                <button id="send-btn"><span class="emoji">📤</span> Send</button>
+            </div>
+        </div>
+        <div class="data-container">
+            <h3><span class="emoji">📊</span> Collected Data</h3>
+            <div id="collected-data">No data collected yet.</div>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const collectedData = document.getElementById('collected-data');
+
+        let threadId = Math.random().toString(36).substring(7);
+        let patient_id = "fa8efdf8-bdd8-4769-84b4-156336d78c3a";
+        // fa8efdf8-bdd8-4769-84b4-156336d78c3a
+
+        function addMessage(content, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', isUser ? 'user-message' : 'ai-message');
+            messageElement.textContent = content;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function jsonToYaml(obj, indent = 0) {
+            let yaml = '';
+            for (const [key, value] of Object.entries(obj)) {
+                const spaces = ' '.repeat(indent);
+                yaml += `${spaces}<span class="yaml-key">${key}:</span> `;
+                if (typeof value === 'object' && value !== null) {
+                    yaml += '\n' + jsonToYaml(value, indent + 2);
+                } else {
+                    yaml += `<span class="yaml-value">${value}</span>\n`;
+                }
+            }
+            return yaml;
+        }
+
+        function updateCollectedData(data) {
+            const yamlData = jsonToYaml(data);
+            collectedData.innerHTML = yamlData || 'No data collected yet.';
+        }
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                userInput.value = '';
+                userInput.style.height = 'auto';
+
+                try {
+                    const response = await fetch(`/chat/${threadId}?patient_id=${patient_id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ content: message }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const reader = response.body.getReader();
+                    let aiMessage = document.createElement('div');
+                    aiMessage.classList.add('message', 'ai-message');
+                    chatMessages.appendChild(aiMessage);
+
+                    let buffer = '';
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        buffer += new TextDecoder().decode(value);
+                        const lines = buffer.split('\n');
+                        buffer = lines.pop() || '';
+
+                        for (const line of lines) {
+                            try {
+                                const parsedChunk = JSON.parse(line);
+                                if (parsedChunk.stream) {
+                                    aiMessage.textContent += parsedChunk.stream;
+                                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                                } else if (parsedChunk.end) {
+                                    updateCollectedData(parsedChunk.end);
+                                }
+                            } catch (e) {
+                                console.error('Error parsing JSON chunk:', e);
+                            }
+                        }
+                    }
+
+                    // Process any remaining data in the buffer
+                    if (buffer) {
+                        try {
+                            const parsedChunk = JSON.parse(buffer);
+                            if (parsedChunk.stream) {
+                                aiMessage.textContent += parsedChunk.stream;
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            } else if (parsedChunk.end) {
+                                updateCollectedData(parsedChunk.end);
+                            }
+                        } catch (e) {
+                            console.error('Error parsing JSON chunk:', e);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    addMessage('Sorry, there was an error processing your request.', false);
+                }
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Auto-expand input box
+        userInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const userInput = document.getElementById('user-input');
+
+    userInput.addEventListener('input', function() {
+        this.style.height = 'auto'; // Reset the height
+        this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scroll height
+    });
+});
+
+        // Initial message
+        addMessage("👋 Hello! How can I assist you today?", false);
+    </script>
+</body>
+
+</html>

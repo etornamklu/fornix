@@ -1,0 +1,21 @@
+.sendMessage {
+    position: relative;
+    background: center / cover no-repeat url("../../../public/images/message_background.svg"),
+    linear-gradient(246deg, #3ca2fb 60.59%, #03549b 108.96%);
+}
+
+.textOverflow {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.textOverflow1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.receiveMessage {
+    background: url("../../../public/images/message_background.svg"), #fff;
+}

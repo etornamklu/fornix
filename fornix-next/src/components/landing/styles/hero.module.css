@@ -1,0 +1,20 @@
+.hero {
+    background: url("../../../../public/images/landing/hero_bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heading {
+    background: linear-gradient(89deg, #fff 69.75%, #000 129.61%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.CountryLines {
+    background: url("../../../../public/images/landing/window_to_country_lines.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

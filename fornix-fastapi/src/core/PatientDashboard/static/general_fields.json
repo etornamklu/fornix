@@ -1,0 +1,18 @@
+{
+    "chief_complaint": "The patient's main complaint",
+    "onset": "Onset of the patient's illness",
+    "location": "Specific location of the patient's complaint and if necessary give examples based on patient's condition",
+    "timing": "A particular time of day or any specific situations when the symptoms tend to occur or worsen?",
+    "severity": "Severity of the patient's illness on a scale of 1-10",
+    "exacerbating_factors": "Exacerbating factors of the patient's illness",
+    "relieving_factors": "Relieving factors of the patient's illness",
+    "associated_symptoms": "Symptoms accompanying patient's main main with examples based on patient's condition",
+    "progression": "Progression of the patient's illness .i.e. whether it is getting better, worse or staying the same",
+    "episodes": "whether the patient has experienced similar symptoms in the past? If yes, how he managed it?",
+    "impact_on_daily_life": "How the patient's illness is affecting his or her daily life",
+    "current_medications": "Current medications, including dosage and frequency if it is a prescription drug",
+    "exposure": "Exposure to any infectious agents, toxins or environmental factors that could be contributing to the patient's illness",
+    "psychological_factors": "Any psychological factors that could be contributing to the patient's illness",
+    "expectations": "The patient's expectations for the evaluation or treatment",
+    "additional_info": "Any additional information that the patient may want to share."
+}

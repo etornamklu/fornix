@@ -1,0 +1,51 @@
+{
+  "patient_id": "8839f1ce-d3e9-47dc-a1bf-ef6c849a6e65",
+  "nickname": "Sophie",
+  "date_of_birth": "1985-09-22",
+  "gender": "Female",
+  "marital_status": "Divorced",
+  "occupation": "Registered Nurse",
+  "address": "456 Oak Lane, Suburbia",
+  "contact_number": "+1-555-555-1234",
+  "emergency_contact": "+1-555-789-4321",
+  "previous_surgeries": {
+    "knee_replacement": "2016-05-10"
+  },
+  "allergies": ["Aspirin"],
+  "medications": ["paracetamol", "chlotrimazole"],
+  "past_medical_history": "Hypothyroidism",
+  "herbal_drug_use": "Echinacea",
+  "family_medical_history": ["Cancer", "Heart Disease"],
+  "smoking": {
+    "status": "Never",
+    "packs_per_day": 0
+  },
+  "alcohol": {
+    "frequency": "Occasional",
+    "units_per_week": 3
+  },
+  "recreational_drug_use": ["None"],
+  "previous_admissions": ["2019-11-05 - Pneumonia"],
+  "previous_diagnoses": "Fibromyalgia",
+  "previous_blood_transfusion": "No",
+  "occupation_details": "Works at a local hospital in the surgical ward.",
+  "diet": ["Vegetarian"],
+  "exercise": "Yoga and walking",
+  "gynaecologic_history": {
+    "pregnancies": 1,
+    "miscarriages": 0,
+    "abortions": 1,
+    "menstruation": {
+      "blood_flow": "Normal",
+      "duration": 6,
+      "regularity": "Irregular"
+    },
+    "num_of_pads": 4,
+    "pad_get_socked": "Yes",
+    "pain": 3
+  },
+  "lifestyle_habits": 3,
+  "dietary_habits": ["Vegetarian"],
+  "exercise_routine": 3,
+  "psychosocial_history": ["string"]
+}

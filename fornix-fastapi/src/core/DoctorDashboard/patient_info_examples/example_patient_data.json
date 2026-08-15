@@ -1,0 +1,53 @@
+[
+  {
+    "age": 45,
+    "sex": "Female",
+    "complaint": "Severe abdominal pain",
+    "history": "Patient has been experiencing intermittent abdominal pain for the past 6 months",
+    "symptoms": "Nausea, vomiting, and loss of appetite",
+    "studies": "Ultrasound shows gallstones",
+    "med_history": "Hypertension, Diabetes",
+    "social_history": "Non-smoker, occasional alcohol",
+    "family_history": "Mother had gallstones"
+  },
+  {
+    "age": 35,
+    "sex": "Male",
+    "complaint": "Chest Pain",
+    "history": "Patient reports experiencing intermittent chest pain for the past week.",
+    "symptoms": "Pain radiating to the left arm, shortness of breath",
+    "studies": "EKG shows ST-segment elevation",
+    "med_history": "Hypertension",
+    "social_history": "Non-smoker, occasional alcohol consumption",
+    "family_history": "Father had a history of myocardial infarction at age 50"
+  },
+  {
+    "age": 45,
+    "sex": "Female",
+    "complaint": "Fatigue and Joint Pain",
+    "history": "Patient reports feeling unusually tired and experiencing joint pain for the past few months.",
+    "symptoms": "Generalized fatigue, joint stiffness, occasional swelling in hands",
+    "studies": "Recent blood work shows elevated inflammatory markers",
+    "med_history": "Rheumatoid arthritis diagnosed 5 years ago",
+    "social_history": "Non-smoker, moderate exercise routine",
+    "family_history": "Mother had a history of autoimmune disease"
+  },
+  {
+    "age": 50,
+    "sex": "Male",
+    "complaint_and_duration": "Fatigue and Joint Pain for the past few months",
+    "symptoms_history": "Generalized fatigue, joint stiffness, occasional swelling in hands",
+    "med_history": "Rheumatoid arthritis diagnosed 5 years ago",
+    "social_family_history": "Non-smoker, moderate exercise routine and Mother had a history of autoimmune disease",
+    "clinical_studies": "Recent blood work shows elevated inflammatory markers"
+  },
+  {
+    "age": 30,
+    "sex": "Female",
+    "complaint_and_duration": "Chest Pain for the past week",
+    "symptoms_history": "Pain radiating to the left arm, shortness of breath",
+    "med_history": "Hypertension",
+    "social_family_history": "Non-smoker, occasional alcohol consumption and Father had a history of myocardial infarction at age 50",
+    "clinical_studies": "EKG shows ST-segment elevation"
+  }
+]

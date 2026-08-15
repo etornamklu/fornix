@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Recommendations Dashboard</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #cce7ff, #b3c6ff);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            resize: vertical;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        button {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .button-blue {
+            background: #007bff;
+        }
+        .button-blue:hover {
+            background: #0056b3;
+        }
+        .button-green {
+            background: #28a745;
+        }
+        .button-green:hover {
+            background: #1e7e34;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .loading div {
+            width: 0.75rem;
+            height: 0.75rem;
+            background: #007bff;
+            border-radius: 50%;
+            animation: pulse 1.2s infinite;
+        }
+        .loading div:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .loading div:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.75);
+            }
+            50% {
+                transform: scale(1.25);
+            }
+        }
+        .alert {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .alert h2 {
+            margin: 0 0 0.5rem 0;
+        }
+        .alert p {
+            margin: 0;
+        }
+        .recommendations {
+                    background: #f1f1f1;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    font-size: 0.9rem;
+                    color: #333;
+                    white-space: pre-wrap;
+                    font-family: monospace;
+                    overflow-x: auto;
+                }
+        
+                .json-key {
+                    color: #881391;
+                }
+                .json-string {
+                    color: #008000;
+                }
+                .json-number {
+                    color: #1a01cc;
+                }
+                .json-boolean {
+                    color: #ff0000;
+                }
+                .json-null {
+                    color: #808080;
+                }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Recommendations Dashboard</h1>
+        <div class="input-group">
+            <label for="patientSummary">Patient Summary</label>
+            <textarea id="patientSummary" rows="4" placeholder="Enter patient summary here..."></textarea>
+        </div>
+        <div class="button-group">
+            <button class="button-blue" id="medSurgButton">Get Medication & Surgical Recommendations</button>
+            <button class="button-green" id="labTestButton">Get Lab Test Recommendations</button>
+        </div>
+        <div id="loading" class="loading" style="display: none;">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="alertContainer"></div>
+        <div id="recommendations" class="recommendations" style="display: none;"></div>
+    </div>
+
+    <script>
+            const API_URL = 'http://localhost:8000';
+            const patientSummaryInput = document.getElementById('patientSummary');
+            const medSurgButton = document.getElementById('medSurgButton');
+            const labTestButton = document.getElementById('labTestButton');
+            const loadingElement = document.getElementById('loading');
+            const alertContainer = document.getElementById('alertContainer');
+            const recommendationsElement = document.getElementById('recommendations');
+    
+            async function fetchRecommendations(endpoint) {
+                const patientSummary = patientSummaryInput.value;
+                if (!patientSummary) {
+                    showAlert('Please enter a patient summary.', 'error');
+                    return;
+                }
+    
+                toggleLoading(true);
+                clearAlerts();
+                recommendationsElement.style.display = 'block';
+                recommendationsElement.textContent = '';
+    
+                try {
+                    const response = await fetch(`${API_URL}/${endpoint}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ summary: patientSummary })
+                    });
+    
+                    if (!response.ok) throw new Error('Network response was not ok');
+    
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let jsonString = '';
+    
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        const chunk = decoder.decode(value);
+                        jsonString += chunk;
+                        recommendationsElement.textContent = jsonString;
+                    }
+    
+                    // Format and display the final JSON
+                    const formattedJson = formatJSON(jsonString);
+                    recommendationsElement.innerHTML = formattedJson;
+                    showAlert('Recommendations generated successfully.', 'success');
+                } catch (error) {
+                    showAlert(error.message, 'error');
+                } finally {
+                    toggleLoading(false);
+                }
+            }
+    
+            function formatJSON(jsonString) {
+                try {
+                    const obj = JSON.parse(jsonString);
+                    const formattedJson = JSON.stringify(obj, null, 2);
+                    return syntaxHighlight(formattedJson);
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                    return jsonString;  // Return the original string if parsing fails
+                }
+            }
+    
+            function syntaxHighlight(json) {
+                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                    let cls = 'json-number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'json-key';
+                        } else {
+                            cls = 'json-string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'json-boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'json-null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                });
+            }
+    
+            function toggleLoading(isLoading) {
+                medSurgButton.disabled = isLoading;
+                labTestButton.disabled = isLoading;
+                loadingElement.style.display = isLoading ? 'flex' : 'none';
+            }
+    
+            function showAlert(message, type) {
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${type}`;
+                alert.innerHTML = `<h2>${type === 'error' ? 'Error' : 'Success'}</h2><p>${message}</p>`;
+                alertContainer.appendChild(alert);
+            }
+    
+            function clearAlerts() {
+                alertContainer.innerHTML = '';
+            }
+    
+            medSurgButton.addEventListener('click', () => fetchRecommendations('medication-and-surgical-recommendations'));
+            labTestButton.addEventListener('click', () => fetchRecommendations('lab-test-recommendations'));
+        </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+#status {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.wave-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.wave {
+    width: 5px;
+    height: 100%;
+    background-color: #3498db;
+    margin: 0 3px;
+    border-radius: 5px;
+    animation: wave 1s ease-in-out infinite;
+}
+
+.wave:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.wave:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: scaleY(0.5);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.options {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.transcription-container, .report-container, .raw-transcript-container {
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.transcription-container h2, .report-container h2, .raw-transcript-container h2 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+#partialTranscript, #finalTranscript, #reportContent, #rawTranscript {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#partialTranscript {
+    color: #7f8c8d;
+}
+
+#finalTranscript {
+    color: #2c3e50;
+}
+
+#reportContent {
+    font-family: monospace;
+}
+
+#rawTranscript {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.yaml-key {
+    color: #2980b9;
+}
+
+.yaml-value {
+    color: #27ae60;
+}

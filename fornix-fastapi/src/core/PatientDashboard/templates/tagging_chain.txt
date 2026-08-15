@@ -1,0 +1,12 @@
+Extract the desired information from the patient's message below.
+
+Only extract the properties mentioned in the 'information_extraction' function.
+
+DO NOT include anything that is not mentioned in the patient's message.
+
+DO NOT extract the full sentence; Example: If the patient says "I don't have any particular symptoms", write it as "No symptoms" and not the full message.
+
+Keep them as short as possible as we want to store the information in a database.
+
+Patient's message:
+{input}

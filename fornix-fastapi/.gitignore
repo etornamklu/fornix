@@ -1,0 +1,16 @@
+/.idea
+*.iml
+.env
+.env.production
+*[Vv]env/
+log_config*
+**__pycache__/
+*/sample_responses/
+.log
+.vscode
+src/core/DoctorDashboard/diagnosis/static
+pyrightconfig.json
+*.log
+env/
+.flake8
+.DS_Store

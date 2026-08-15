@@ -1,0 +1,173 @@
+definitions:
+  DemographicDetails:
+    description: Contains basic demographic information of the patient.
+    properties:
+      age:
+        description: Age of the patient
+        title: Age
+        type: integer
+      gender:
+        description: Gender of the patient
+        title: Gender
+        type: string
+      name:
+        description: Full name of the patient
+        title: Name
+        type: string
+      occupation:
+        description: Occupation of the patient
+        title: Occupation
+        type: string
+      residence:
+        description: Place where the patient resides
+        title: Residence
+        type: string
+    required:
+    - name
+    - gender
+    title: DemographicDetails
+    type: object
+  FamilyHistory:
+    description: Contains the family medical history of the patient.
+    properties:
+      history:
+        description: Detailed description of the family medical history
+        title: History
+        type: string
+    title: FamilyHistory
+    type: object
+  HistoryOfPresentIllness:
+    description: Describes the details of the present illness experienced by the patient.
+    properties:
+      description:
+        description: Detailed description of the present illness
+        title: Description
+        type: string
+    required:
+    - description
+    title: HistoryOfPresentIllness
+    type: object
+  MedicationHistoryAndAllergies:
+    description: Contains information about the patient's current medications and
+      any known allergies.
+    properties:
+      allergies:
+        description: Details of any known allergies
+        title: Allergies
+        type: string
+      medications:
+        description: Details of the current medications
+        title: Medications
+        type: string
+    title: MedicationHistoryAndAllergies
+    type: object
+  PastMedicalHistory:
+    description: Describes the patient's past medical history including chronic conditions
+      and previous diagnoses.
+    properties:
+      history:
+        description: Detailed description of the past medical history
+        title: History
+        type: string
+    title: PastMedicalHistory
+    type: object
+  ReviewOfSystems:
+    description: Contains the review of different body systems based on the patient's
+      current complaints.
+    properties:
+      cardiovascular_system:
+        description: Details related to the cardiovascular system
+        title: Cardiovascular System
+        type: string
+      endocrine_system:
+        description: Details related to the endocrine system
+        title: Endocrine System
+        type: string
+      gastrointestinal_system:
+        description: Details related to the gastrointestinal system
+        title: Gastrointestinal System
+        type: string
+      musculoskeletal_system:
+        description: Details related to the musculoskeletal system
+        title: Musculoskeletal System
+        type: string
+      neurological_system:
+        description: Details related to the neurological system
+        title: Neurological System
+        type: string
+      respiratory_system:
+        description: Details related to the respiratory system
+        title: Respiratory System
+        type: string
+      skin:
+        description: Details related to the skin
+        title: Skin
+        type: string
+    required:
+    - skin
+    title: ReviewOfSystems
+    type: object
+  SocialHistory:
+    description: Describes the patient's social history including lifestyle, habits,
+      and stress levels.
+    properties:
+      history:
+        description: Detailed description of the social history
+        title: History
+        type: string
+    title: SocialHistory
+    type: object
+description: Structured output containing all relevant information from the patient's
+  transcript.
+properties:
+  chief_complaint:
+    description: Chief complaint of the patient
+    title: Chief Complaint
+    type: string
+  demographic_details:
+    allOf:
+    - $ref: '#/definitions/DemographicDetails'
+    description: Contains basic demographic information of the patient
+    title: Demographic Details
+  family_history:
+    allOf:
+    - $ref: '#/definitions/FamilyHistory'
+    description: Contains the family medical history of the patient
+    title: Family History
+  history_of_present_illness:
+    allOf:
+    - $ref: '#/definitions/HistoryOfPresentIllness'
+    description: Describes the details of the present illness experienced by the patient
+    title: History Of Present Illness
+  medication_history_and_allergies:
+    allOf:
+    - $ref: '#/definitions/MedicationHistoryAndAllergies'
+    description: Contains information about the patient's current medications and
+      any known allergies
+    title: Medication History And Allergies
+  past_medical_history:
+    allOf:
+    - $ref: '#/definitions/PastMedicalHistory'
+    description: Describes the patient's past medical history including chronic conditions
+      and previous diagnoses
+    title: Past Medical History
+  review_of_systems:
+    allOf:
+    - $ref: '#/definitions/ReviewOfSystems'
+    description: Contains the review of different body systems based on the patient's
+      current complaints
+    title: Review Of Systems
+  social_history:
+    allOf:
+    - $ref: '#/definitions/SocialHistory'
+    description: Describes the patient's social history including lifestyle, habits,
+      and stress levels
+    title: Social History
+required:
+- demographic_details
+- chief_complaint
+- history_of_present_illness
+- review_of_systems
+- past_medical_history
+title: PatientRecord
+type: object

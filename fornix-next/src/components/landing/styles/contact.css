@@ -1,0 +1,16 @@
+/* Contact Us Form Styling */
+input, textarea {
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #3B82F6;
+}
+
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2563EB;
+}

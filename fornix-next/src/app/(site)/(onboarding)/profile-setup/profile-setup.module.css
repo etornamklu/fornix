@@ -1,0 +1,20 @@
+.StepOne {
+    background: radial-gradient(farthest-side, white 79%, transparent 80% 100%),
+    conic-gradient(#d9d9d9 50%, #15803d 0);
+}
+
+.StepTwo {
+    @apply border-4 border-[#15803d];
+}
+
+.PremiumCard {
+    border-radius: 16px;
+    border: 2px solid var(--Generic-White, #fff);
+    background: linear-gradient(
+            250deg,
+            rgba(3, 101, 185, 0.2) -6.83%,
+            #0476d9 79.82%
+    );
+    box-shadow: 0px 30px 30px -5px rgba(15, 23, 42, 0.35),
+    0px 10px 10px 0px rgba(15, 23, 42, 0.05);
+}

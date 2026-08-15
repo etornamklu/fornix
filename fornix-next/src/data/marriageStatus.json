@@ -1,0 +1,18 @@
+[
+  {
+    "value": "married",
+    "label": "Married"
+  },
+  {
+    "value": "divorced",
+    "label": "Divorced"
+  },
+  {
+    "value": "single",
+    "label": "Single"
+  },
+  {
+    "value": "widow",
+    "label": "Widow/ Widower"
+  }
+]

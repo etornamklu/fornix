@@ -1,0 +1,13 @@
+.LogoWrapper {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.LogoBg {
+    background: url("../../../../public/images/landing/why_us_bg.png");
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+}

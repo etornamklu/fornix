@@ -1,0 +1,46 @@
+[
+  {
+    "label": "Doctor",
+    "value": "doctor"
+  },
+  {
+    "label": "Teacher",
+    "value": "teacher"
+  },
+  {
+    "label": "Engineer",
+    "value": "engineer"
+  },
+  {
+    "label": "Artist",
+    "value": "artist"
+  },
+  {
+    "label": "Chef",
+    "value": "chef"
+  },
+  {
+    "label": "Writer",
+    "value": "writer"
+  },
+  {
+    "label": "Musician",
+    "value": "musician"
+  },
+  {
+    "label": "Designer",
+    "value": "designer"
+  },
+  {
+    "label": "Scientist",
+    "value": "scientist"
+  },
+  {
+    "label": "Programmer",
+    "value": "programmer"
+  },
+  {
+    "label": "Student",
+    "value": "student"
+  }
+]
